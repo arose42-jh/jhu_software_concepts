@@ -1,0 +1,72 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e6ecf0, #fdfdfd);
+    color: #333;
+    padding: 40px;
+}
+
+/* Container styling */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    padding: 40px;
+    max-width: 1000px;
+    margin: auto;
+    transition: transform 0.2s ease;
+}
+
+.container:hover {
+    transform: scale(1.01);
+}
+
+/* Bio text */
+.bio-text {
+    flex: 2;
+    padding-right: 40px;
+}
+
+.bio-text h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.bio-text h2 {
+    font-size: 1.5em;
+    color: #7f8c8d;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.bio-text p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #444;
+}
+
+/* Image styling */
+.bio-image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bio-image img {
+    width: 100%;
+    max-width: 220px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}

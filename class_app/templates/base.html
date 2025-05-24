@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<strong><nav>
+    <ul>
+        <li><a href="{{ url_for('pages.home') }}">Home</a></li>
+        <li><a href="{{ url_for('pages.projects') }}">project</a></li>
+        <li><a href="{{ url_for('pages.contact') }}">Contact</a></li>
+    </ul>
+</nav></strong>
+<div class="container">
+    <div class="bio-text">
+        <h1>Andrew Rose</h1>
+        <h2>Senior Associate Scientist</h2>
+        <p>
+            This is a short bio about yourself. You can include your education, interests,
+            work experience, or anything else you'd like visitors to know. Try to keep it
+            concise but informative.
+        </p>
+    </div>
+    <div class="bio-image">
+        <img src="{{ url_for('static', filename='_dsc0018.jpg') }}" alt="Your Name">
+    </div>
+</div>
+
+</body>
+</html>
