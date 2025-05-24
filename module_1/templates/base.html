@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<strong><nav>
+<strong><nav class="navbar">
     <ul>
-        <li><a href="{{ url_for('pages.home') }}">Home</a></li>
-        <li><a href="{{ url_for('pages.projects') }}">project</a></li>
+        <li><a href="{{ url_for('pages.home') }}" class="active">Home</a></li>
+        <li><a href="{{ url_for('pages.projects') }}">Projects</a></li>
         <li><a href="{{ url_for('pages.contact') }}">Contact</a></li>
     </ul>
 </nav></strong>

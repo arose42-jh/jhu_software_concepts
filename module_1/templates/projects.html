@@ -7,10 +7,10 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <strong><nav>
+  <strong><nav class="navbar">
     <ul>
         <li><a href="{{ url_for('pages.home') }}">Home</a></li>
-        <li><a href="{{ url_for('pages.projects') }}">project</a></li>
+        <li><a href="{{ url_for('pages.projects') }}" class="active">Projects</a></li>
         <li><a href="{{ url_for('pages.contact') }}">Contact</a></li>
     </ul>
   </nav></strong>
@@ -18,10 +18,10 @@
 
   <div class="project">
     <h2>Module 1 - Personal Website</h2>
-    <p>This project does X, Y, and Z. It solves problem A by using technologies like B and C.</p>
-    <a href="https://github.com/yourusername/project1" target="_blank">View on GitHub</a>
+    <p>In this module I created a website using Flask, including the use of blueprints, HTML and CSS.</p>
+    <a href="https://github.com/arose42-jh/jhu_software_concepts/tree/main/class_app" target="_blank">View on GitHub</a>
   </div>
-
+<!-- for adding future projects, uncomment the following divs and fill in the details
   <div class="project">
     <h2>Project Title 2</h2>
     <p>This is a tool that helps users do ABC more efficiently by leveraging modern frameworks like React and Node.js.</p>
@@ -33,5 +33,6 @@
     <p>An experimental project that integrates machine learning models to automate XYZ process.</p>
     <a href="https://github.com/yourusername/project3" target="_blank">View on GitHub</a>
   </div>
+-->
 </body>
 </html>
