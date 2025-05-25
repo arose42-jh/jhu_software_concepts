@@ -1,7 +1,3 @@
-## Running the Flask App
-
-Follow these steps to set up and run the Flask application in this repository.
-
 ### 1. Prerequisites
 - Python 3.10+
 
