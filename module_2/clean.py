@@ -32,7 +32,15 @@ def clean_data(soup):
         #Program
         program = main_row.select_one("td:nth-of-type(2) div")
         if program:
-            current_app["Program"] = re.sub(r"\n+", " | ", program.text.strip())
+            #Program and degree are on the same line >:(
+            program_text = re.sub(r"\n+", " | ", program.text.strip())
+            #Contingency for if no degree, i thought they all had it but it errored without the if statement
+            if " | " in program_text:
+                parts = program_text.split(" | ", 1)
+                current_app["Program"] = parts[0].strip()
+                current_app["Degree"] = parts[1].strip()
+            else:
+                current_app["Program"] = program_text
         #Added on       
         Date_added =  main_row.select_one("td:nth-of-type(3)")
         if Date_added:
