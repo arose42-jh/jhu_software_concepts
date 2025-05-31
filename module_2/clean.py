@@ -76,7 +76,7 @@ def clean_data(soup):
     
         data.append(current_app)
     #Saves all the data into a final Json file.
-    with open("cleaned_data.json", "w", encoding = "utf-8") as f:
+    with open("applicant_data.json", "w", encoding = "utf-8") as f:
         json.dump(data, f, indent = 4)
 
 
