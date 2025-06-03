@@ -13,9 +13,18 @@ def runquery(connection, query):
         result = cursor.fetchall()
         return result
     except:
-        print(f"The error '{e}' occured")
+        print(f"error occured")
+        return "error"
 
-query1 = "SELECT id FROM applicants WHERE term='Spring 2025'"
-ids = runquery(connection, query1)
+total = "SELECT id FROM applicants"
+total_count = len(runquery(connection, total))
 
-print(len(ids))
+spring25 = "SELECT id FROM applicants WHERE term='Spring 2025'"
+ids = runquery(connection, spring25)#
+
+international = "SELECT id FROM applicants WHERE us_or_international = 'International'"
+inter = len(runquery(connection, international))
+interper = inter/total_count * 100
+
+print(f"1. applicant of spring 2025: {len(ids)}")
+print(f"2. International percentage: {interper:.2f}%")

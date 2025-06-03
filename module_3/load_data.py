@@ -14,8 +14,8 @@ connection = psycopg.connect(
 def gpa(gpa_str):
     if not gpa_str:
         return None
-        match = re.search(r"(\d\.\d{1,2})", gpa_str)
-        return float(match.group(1)) if match else None
+    match = re.search(r"(\d\.\d{1,2})", gpa_str)
+    return float(match.group(1)) if match else None
 
 def gres(gre_str):
     if not gre_str:
