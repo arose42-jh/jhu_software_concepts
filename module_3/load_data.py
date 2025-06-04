@@ -65,7 +65,10 @@ with connection.cursor() as cur:
 
         gpa_fl = gpa(entry.get("GPA"))
         gretot, grev,greaw = gres(entry.get("GRE"))
-
+        dept = entry.get("Program")
+        uni = entry.get("University")
+        program = f"{dept}, {uni}"
+        
         cur.execute("""
             INSERT INTO applicants (
                 program, degree, date_added, status,
@@ -73,7 +76,7 @@ with connection.cursor() as cur:
             ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
 
         """, (
-            f"{entry.get("Program")}, {entry.get("Universiy")}",
+            program,
             entry.get("Degree"),
             date_obj,
             entry.get("Decision"),
