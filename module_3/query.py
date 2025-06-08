@@ -1,10 +1,13 @@
 import psycopg
 import statistics
+
+#Connect to Database
 connection = psycopg.connect(
     dbname = "applicants",
     user = "postgres"
     )
 
+#builds the query execute
 def runquery(connection, query):
     cursor = connection.cursor()
     result = None
@@ -17,6 +20,7 @@ def runquery(connection, query):
         print(f"error occured")
         return "error"
 
+#All the desired queries go here
 def get_all_statistics():
     total = "SELECT id FROM applicants"
     total_count = len(runquery(connection, total))

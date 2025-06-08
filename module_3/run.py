@@ -3,10 +3,10 @@ from query import get_all_statistics
 
 # Create a Flask application
 app = Flask(__name__)
-    # Call the pages blueprint
+
 @app.route('/')
 
-
+#Have query.py query the data
 def index():
     db_results = get_all_statistics()
     return render_template('index.html', results=db_results)
