@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 import re
 #Load the Json results
-with open("applicant_data.json", "r", encoding="utf-8") as f:
+with open("module_3/applicant_data.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
 #Connect to the database
@@ -40,6 +40,7 @@ def gres(gre_str):
     return total, verbal, aw
 
 with connection.cursor() as cur:
+    #removes previous table
     cur.execute("DROP TABLE IF EXISTS applicants;")
     #Creates the Table
     cur.execute(
