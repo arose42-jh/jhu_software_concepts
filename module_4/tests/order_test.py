@@ -37,7 +37,7 @@ def test_multi_sacuce_toppings(empty_order):
 #Output String tests
 @pytest.mark.pizza
 @pytest.mark.order
-def str_with_onepizza(empty_order):
+def test_str_with_onepizza(empty_order):
     empty_order.input_pizza('thin', ['liv sauce', 'pesto'], 'mozz', ['pineapple'])
     orderstring = str(empty_order)
     assert 'Order: ' in orderstring
@@ -48,6 +48,6 @@ def str_with_onepizza(empty_order):
 
 #paid tests
 @pytest.mark.order
-def paid_test(empty_order):
+def test_paid(empty_order):
     empty_order.order_paid()
     assert empty_order.is_paid is True

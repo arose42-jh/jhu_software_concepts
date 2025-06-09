@@ -5,11 +5,10 @@ class Pizza:
         self.sauce = [sauce]
         self.cheese = cheese
         self.toppings = [toppings]
-        self.cost = 0
 
 
     def __str__(self):
-        print(f"Crust: {self.crust}, Sauce: {self.sauce}, Cheese: {self.cheese}, Toppings: {self.toppings}, Cost: {self.cost}")
+        return(f"Crust: {self.crust}, Sauce: {self.sauce}, Cheese: {self.cheese}, Toppings: {self.toppings}, Cost: {self.cost()}")
     
 
     def cost(self):
