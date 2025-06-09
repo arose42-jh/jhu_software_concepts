@@ -10,7 +10,7 @@ def empty_order():
 #Mulitple pizzas, multiple topings
 @pytest.mark.order
 @pytest.mark.pizza
-def test_two_pizza(empty_order):
+def test_integration(empty_order):
     empty_order.input_pizza('gluten_free', ['liv sauce'], 'mozzarella', ['mushrooms pineapple'])
     cost1 = empty_order.cost
     empty_order.input_pizza('thick', ['liv sauce'], 'mozzarella', ['peperoni'])
