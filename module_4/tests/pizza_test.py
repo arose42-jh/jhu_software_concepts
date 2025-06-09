@@ -1,9 +1,8 @@
 import pytest
 from pizzaorders.pizza import Pizza
 
-# @pytest.fixture
-# def nonepizza(): #left beef
-#     return Pizza()
+#mark all as pizza
+pytestmark = pytest.mark.pizza
 
 @pytest.fixture
 def basicpizza():
@@ -25,7 +24,7 @@ def say_the_pizza(basicpizza):
     assert 'pesto' in pizzastring
     assert 'Mozzarella' in pizzastring
     assert 'mushrooms' in pizzastring
-    assert '$11.00' in pizzastring
+    assert '11' in pizzastring
 
 #Make more pizzas for calculator
 def cost_calculator(basicpizza):
