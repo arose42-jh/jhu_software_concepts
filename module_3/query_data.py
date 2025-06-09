@@ -55,13 +55,13 @@ def get_all_statistics():
 
     JHUcompQuery = "SELECT program FROM applicants WHERE degree = 'Masters' AND program LIKE '%Computer Science%' AND program LIKE '%Johns Hopkins%'"
     JHUCSnum = len(runquery(connection, JHUcompQuery))
-    # print(f"1. applicant of spring 2025: {len(Fall25)}")
-    # print(f"2. International percentage: {interper:.2f}%")
-    # print(f"3. Average GPA: {gpa}, Average GRE {gre}, Average GREV {grev}, Average GRE AW {greaw}")
-    # print(f"4. Average GPA American: {usgpaavg}")
-    # print(f"5. Accepted Percent: {acceptedperc}")
-    # print(f"6. Average GPA Acceptance: {acceptavg}")
-    # print(f"7. JHU Masters Computer Science count: {JHUCSnum}")
+    print(f"1. applicant of spring 2025: {len(Fall25)}")
+    print(f"2. International percentage: {interper:.2f}%")
+    print(f"3. Average GPA: {gpa}, Average GRE {gre}, Average GREV {grev}, Average GRE AW {greaw}")
+    print(f"4. Average GPA American: {usgpaavg}")
+    print(f"5. Accepted Percent: {acceptedperc}")
+    print(f"6. Average GPA Acceptance: {acceptavg}")
+    print(f"7. JHU Masters Computer Science count: {JHUCSnum}")
 
     return {
         'fall_2025_applicants': len(Fall25),

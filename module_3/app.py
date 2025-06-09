@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from query import get_all_statistics
+from module_3.query_data import get_all_statistics
 
 # Create a Flask application
 app = Flask(__name__)
