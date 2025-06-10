@@ -11,7 +11,7 @@ def empty_order():
 @pytest.mark.order
 def test_starts_empty(empty_order):
     assert len(empty_order.pizzas) == 0
-    assert empty_order.cost == 0.0
+    assert empty_order.cost == 0
     assert empty_order.is_paid is False
 
 #Input pizza tests, this second because other functions depend on it (i know it tests out of order)
@@ -40,9 +40,7 @@ def test_multi_sacuce_toppings(empty_order):
 def test_str_with_onepizza(empty_order):
     empty_order.input_pizza('thin', ['liv sauce', 'pesto'], 'mozz', ['pineapple'])
     orderstring = str(empty_order)
-    assert 'Order: ' in orderstring
-    assert 'Pizzas ordered: ' in orderstring
-    assert 'Pizza 1: ' in orderstring
+    assert 'Customer Requested:' in orderstring
     assert 'Cost: ' in orderstring
     assert 'Cost: $0.00' not in orderstring
 

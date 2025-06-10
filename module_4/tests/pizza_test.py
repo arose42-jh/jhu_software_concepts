@@ -3,7 +3,7 @@ from pizzaorders.pizza import Pizza
 
 @pytest.fixture
 def basicpizza():
-    pizza = Pizza('thin', 'pesto', 'mozzarella', 'mushrooms')
+    pizza = Pizza('thin', ['pesto', 'marinara'], 'mozzarella', ['mushrooms'])
     return pizza
 
 @pytest.mark.pizza
@@ -23,10 +23,10 @@ def test_say_the_pizza(basicpizza):
     assert 'pesto' in pizzastring
     assert 'mozzarella' in pizzastring
     assert 'mushrooms' in pizzastring
-    assert '11' in pizzastring
+    assert '13' in pizzastring
 
 @pytest.mark.pizza
 #Make more pizzas for calculator
 def test_cost_calculator(basicpizza):
     nocoupon = basicpizza.cost() 
-    assert nocoupon == 11
+    assert nocoupon == 13

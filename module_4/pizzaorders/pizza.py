@@ -1,36 +1,41 @@
 class Pizza:
-    
+    #initialize teh pizza with all the fixins
+    crust: str
+    sauce: list[str]
+    cheese: str
+    toppings: list[str]
+
     def __init__(self, crust, sauce, cheese, toppings):
         self.crust = crust
-        self.sauce = [sauce]
+        self.sauce = sauce
         self.cheese = cheese
-        self.toppings = [toppings]
+        self.toppings = toppings
 
-
+    #returns string output of pizza
     def __str__(self):
         return(f"Crust: {self.crust}, Sauce: {self.sauce}, Cheese: {self.cheese}, Toppings: {self.toppings}, Cost: {self.cost()}")
     
-
+    #calculates cost
     def cost(self):
-        self.cost = 0
+        total = 0
         if self.crust == 'thin':
-            self.cost += 5
+            total += 5
         elif self.crust == 'thick':
-            self.cost += 6
+            total += 6
         else:
-            self.cost += 8
+            total += 8
         for sauce in self.sauce:
             if sauce == 'marinara':
-                self.cost += 2
+                total += 2
             if sauce == 'pesto':
-                self.cost += 3
+                total += 3
             if sauce == 'liv sauce':
-                self.cost +=5
+                total +=5
         for topping in self.toppings:
             if topping == 'pineapple':
-                self.cost += 1
+                total += 1
             elif topping == 'peperoni':
-                self.cost += 2
+                total += 2
             else:
-                self.cost += 3
-        return self.cost
+                total += 3
+        return total
