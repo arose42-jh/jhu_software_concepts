@@ -1,0 +1,94 @@
+<!-- base HTML provided by AI-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduate Admissions Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Graduate Admissions Analytics</h1>
+        
+        {% if results %}
+        <div class="status" id="status">
+            Database connected successfully!
+        </div>
+        
+        <div class="stats-grid">
+            <div class="query-block">
+                <div class="query-header">Fall 2025 Applicants</div>
+                <div class="query-results">
+                    <div class="result-number">{{ results.fall_2025_applicants }}</div>
+                </div>
+            </div>
+            
+            <div class="query-block">
+                <div class="query-header">Total Applicants</div>
+                <div class="query-results">
+                    <div class="result-number">{{ results.total_applicants }}</div>
+                </div>
+            </div>
+            
+            <div class="query-block">
+                <div class="query-header">International Students</div>
+                <div class="query-results">
+                    <div class="result-number">{{ results.international_percentage }}</div>
+                </div>
+            </div>
+            
+            <div class="query-block">
+                <div class="query-header">Acceptance Rate</div>
+                <div class="query-results">
+                    <div class="result-number">{{ results.acceptance_rate }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="detailed-stats">
+            <div class="detailed-block">
+                <div class="detailed-header">Average GPA (All)</div>
+                <div class="detailed-value">{{ results.average_gpa }}</div>
+            </div>
+            
+            <div class="detailed-block">
+                <div class="detailed-header">Average GPA (US Students)</div>
+                <div class="detailed-value">{{ results.us_average_gpa }}</div>
+            </div>
+            
+            <div class="detailed-block">
+                <div class="detailed-header">Average GPA (Accepted)</div>
+                <div class="detailed-value">{{ results.accepted_average_gpa }}</div>
+            </div>
+            
+            <div class="detailed-block">
+                <div class="detailed-header">Average GRE Total</div>
+                <div class="detailed-value">{{ results.average_gre }}</div>
+            </div>
+            
+            <div class="detailed-block">
+                <div class="detailed-header">Average GRE Verbal</div>
+                <div class="detailed-value">{{ results.average_gre_verbal }}</div>
+            </div>
+            
+            <div class="detailed-block">
+                <div class="detailed-header">Average GRE Writing</div>
+                <div class="detailed-value">{{ results.average_gre_aw }}</div>
+            </div>
+            
+            <div class="detailed-block">
+                <div class="detailed-header">JHU CS Masters</div>
+                <div class="detailed-value">{{ results.jhu_cs_masters }}</div>
+            </div>
+        </div>
+        
+        {% else %}
+        <div class="error-message">
+            Unable to connect to database. Please check your database connection and try again.
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
