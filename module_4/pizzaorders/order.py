@@ -12,6 +12,7 @@ class Order:
     def __str__(self):
         #return a customers complete order
         lines = ["Customer Requested:"]
+        #Account for multiple pizzas
         for  pizza in self.pizzas:
             lines.append(f"{pizza}")
         return "\n".join(lines)    
