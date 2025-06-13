@@ -12,15 +12,15 @@ documentation for details.
 
 .. automodule:: pizza
    :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
+   .. :undoc-members:
+   .. :show-inheritance:
+   .. :special-members: __init__
 
 .. automodule:: order
    :members:
-   :undoc-members:
-   :show-inheritance:
-   :special-members: __init__
+   .. :undoc-members:
+   .. :show-inheritance:
+   .. :special-members: __init__
    
 .. toctree::
    :maxdepth: 2
