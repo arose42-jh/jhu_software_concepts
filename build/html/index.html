@@ -42,7 +42,24 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">module_4 documentation</a></li>
+<li><a class="reference internal" href="#">module_4 documentation</a><ul>
+<li><a class="reference internal" href="#pizzaorders.pizza.Pizza"><code class="docutils literal notranslate"><span class="pre">Pizza</span></code></a><ul>
+<li><a class="reference internal" href="#pizzaorders.pizza.Pizza.__init__"><code class="docutils literal notranslate"><span class="pre">Pizza.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#pizzaorders.pizza.Pizza.cheese"><code class="docutils literal notranslate"><span class="pre">Pizza.cheese</span></code></a></li>
+<li><a class="reference internal" href="#pizzaorders.pizza.Pizza.cost"><code class="docutils literal notranslate"><span class="pre">Pizza.cost()</span></code></a></li>
+<li><a class="reference internal" href="#pizzaorders.pizza.Pizza.crust"><code class="docutils literal notranslate"><span class="pre">Pizza.crust</span></code></a></li>
+<li><a class="reference internal" href="#pizzaorders.pizza.Pizza.sauce"><code class="docutils literal notranslate"><span class="pre">Pizza.sauce</span></code></a></li>
+<li><a class="reference internal" href="#pizzaorders.pizza.Pizza.toppings"><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pizzaorders.order.Order"><code class="docutils literal notranslate"><span class="pre">Order</span></code></a><ul>
+<li><a class="reference internal" href="#pizzaorders.order.Order.__init__"><code class="docutils literal notranslate"><span class="pre">Order.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#pizzaorders.order.Order.input_pizza"><code class="docutils literal notranslate"><span class="pre">Order.input_pizza()</span></code></a></li>
+<li><a class="reference internal" href="#pizzaorders.order.Order.order_paid"><code class="docutils literal notranslate"><span class="pre">Order.order_paid()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
         </div>
@@ -74,6 +91,101 @@
 <p>Add your content using <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> syntax. See the
 <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>
 documentation for details.</p>
+<dl class="py class" id="module-pizzaorders.pizza">
+<dt class="sig sig-object py" id="pizzaorders.pizza.Pizza">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pizzaorders.pizza.</span></span><span class="sig-name descname"><span class="pre">Pizza</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crust</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sauce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cheese</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toppings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pizzaorders.pizza.Pizza" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a pizza with customizable crust, sauce, cheese, and toppings.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>crust (str): The type of crust (e.g., ‘thin’, ‘thick’, etc.).
+sauce (list[str]): List of sauces on the pizza.
+cheese (str): The type of cheese used.
+toppings (list[str]): List of toppings on the pizza.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pizzaorders.pizza.Pizza.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crust</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sauce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cheese</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toppings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pizzaorders.pizza.Pizza.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a Pizza object with crust, sauce, cheese, and toppings.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>crust (str): The type of crust.
+sauce (list[str]): List of sauces.
+cheese (str): The type of cheese.
+toppings (list[str]): List of toppings.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pizzaorders.pizza.Pizza.cheese">
+<span class="sig-name descname"><span class="pre">cheese</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pizzaorders.pizza.Pizza.cheese" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pizzaorders.pizza.Pizza.cost">
+<span class="sig-name descname"><span class="pre">cost</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pizzaorders.pizza.Pizza.cost" title="Link to this definition"></a></dt>
+<dd><p>Calculate the total cost of the pizza based on its ingredients.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>int: The total cost of the pizza.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pizzaorders.pizza.Pizza.crust">
+<span class="sig-name descname"><span class="pre">crust</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#pizzaorders.pizza.Pizza.crust" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pizzaorders.pizza.Pizza.sauce">
+<span class="sig-name descname"><span class="pre">sauce</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pizzaorders.pizza.Pizza.sauce" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pizzaorders.pizza.Pizza.toppings">
+<span class="sig-name descname"><span class="pre">toppings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pizzaorders.pizza.Pizza.toppings" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-pizzaorders.order">
+<dt class="sig sig-object py" id="pizzaorders.order.Order">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pizzaorders.order.</span></span><span class="sig-name descname"><span class="pre">Order</span></span><a class="headerlink" href="#pizzaorders.order.Order" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a customer’s order, containing multiple pizzas, total cost, and payment status.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>pizzas (list[Pizza]): List of Pizza objects in the order.
+cost (int): Total cost of the order.
+is_paid (bool): Payment status of the order.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pizzaorders.order.Order.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pizzaorders.order.Order.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a new customer order with no pizzas, zero cost, and unpaid status.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pizzaorders.order.Order.input_pizza">
+<span class="sig-name descname"><span class="pre">input_pizza</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crust</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sauce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cheese</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">toppings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pizzaorders.order.Order.input_pizza" title="Link to this definition"></a></dt>
+<dd><p>Add a pizza to the order with the specified ingredients and update the total cost.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>crust (str): The type of crust.
+sauce (list[str]): List of sauces.
+cheese (str): The type of cheese.
+toppings (list[str]): List of toppings.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pizzaorders.order.Order.order_paid">
+<span class="sig-name descname"><span class="pre">order_paid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pizzaorders.order.Order.order_paid" title="Link to this definition"></a></dt>
+<dd><p>Mark the order as paid.</p>
+</dd></dl>
+
+</dd></dl>
+
 <div class="toctree-wrapper compound">
 </div>
 </section>
