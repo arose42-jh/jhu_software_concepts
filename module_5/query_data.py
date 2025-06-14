@@ -1,5 +1,11 @@
-import psycopg
+"""
+Module for querying applicant statistics from the PostgreSQL database.
+
+Provides functions to run SQL queries and aggregate statistics for reporting.
+"""
+
 import statistics
+import psycopg
 
 #Connect to Database
 connection = psycopg.connect(
@@ -8,72 +14,76 @@ connection = psycopg.connect(
     )
 
 #builds the query execute
-def runquery(connection, query):
-    cursor = connection.cursor()
+def runquery(db_connection, query):
+    """
+    Execute a SQL query and return the first column of all results as a list.
+
+    Args:
+        db_connection: psycopg database connection object.
+        query (str): SQL query to execute.
+    Returns:
+        list: List of values from the first column of the query result.
+    """
+    cursor = db_connection.cursor()
     result = None
-    try:
-        cursor.execute(query)
-        # Makes a list instead of tuple
-        result = [r[0] for r in cursor.fetchall()]
-        return result
-    except:
-        print(f"error occured")
-        return "error"
+    cursor.execute(query)
+    # Makes a list instead of tuple
+    result = [r[0] for r in cursor.fetchall()]
+    return result
 
 #All the desired queries go here
 def get_all_statistics():
-    total = "SELECT id FROM applicants"
-    total_count = len(runquery(connection, total))
+    """
+    Run multiple queries to gather statistics about applicants.
 
-    Fall25query = "SELECT id FROM applicants WHERE term='Fall 2025'"
-    Fall25 = runquery(connection, Fall25query)
+    Returns:
+        dict: Dictionary containing statistics such as applicant counts, averages, and percentages.
+    """
+    total_count = len(runquery(connection, "SELECT id FROM applicants"))
 
-    internationalquery = "SELECT id FROM applicants WHERE us_or_international = 'International'"
-    inter = len(runquery(connection, internationalquery))
-    interper = inter/total_count * 100
+    fall_25 = runquery(connection, "SELECT id FROM applicants WHERE term='Fall 2025'")
 
-    GPAquery = "SELECT gpa FROM applicants WHERE gpa IS NOT NULL"
-    gpa = statistics.mean(runquery(connection, GPAquery))
+    inter_percent = (len(runquery(connection, "SELECT id FROM applicants WHERE "
+                                  "us_or_international = 'International'"))/total_count * 100)
 
-    GREQuery = "SELECT gre FROM applicants WHERE gre IS NOT NULL"
-    gre = statistics.mean(runquery(connection, GREQuery))
+    gpa = statistics.mean(runquery(connection, "SELECT gpa FROM applicants WHERE gpa IS NOT NULL"))
 
-    GREVQuery = "SELECT gre_v FROM applicants WHERE gre_v IS NOT NULL"
-    grev = statistics.mean(runquery(connection, GREVQuery))
+    gre = statistics.mean(runquery(connection, "SELECT gre FROM applicants WHERE gre IS NOT NULL"))
 
-    GREAWQuery = "SELECT gre_aw FROM applicants WHERE gre_aw IS NOT NULL"
-    greaw = statistics.mean(runquery(connection, GREAWQuery))
+    grev = statistics.mean(runquery(connection,
+                                     "SELECT gre_v FROM applicants WHERE gre_v IS NOT NULL"))
 
-    USgpaQuery = "SELECT gpa FROM applicants WHERE gpa IS NOT NULL AND us_or_international = 'American' AND term = 'Fall 2025'"
-    usgpaavg = statistics.mean(runquery(connection, USgpaQuery))
+    greaw = statistics.mean(runquery(connection,
+                                     "SELECT gre_aw FROM applicants WHERE gre_aw IS NOT NULL"))
 
-    AcceptedSprQuery = "SELECT status FROM applicants WHERE status LIKE 'Accepted%' AND term = 'Fall 2025'"
-    acceptedperc = len(runquery(connection, AcceptedSprQuery)) / len(Fall25) * 100
+    us_gpa_query = ("SELECT gpa FROM applicants WHERE gpa IS NOT NULL "
+                    "AND us_or_international = 'American' AND term = 'Fall 2025'")
+    usgpaavg = statistics.mean(runquery(connection, us_gpa_query))
 
-    AccptGPAQuery = "SELECT gpa FROM applicants WHERE status LIKE 'Accepted%' AND term = 'Fall 2025' AND gpa IS NOT NULL"
-    acceptavg = statistics.mean(runquery(connection, AccptGPAQuery))
+    accepted_spr_query = ("SELECT status FROM applicants WHERE "
+                          "status LIKE 'Accepted%' AND term = 'Fall 2025'")
+    acceptedperc = (len(runquery(connection, accepted_spr_query))
+                    / len(fall_25) * 100)
 
-    JHUcompQuery = "SELECT program FROM applicants WHERE degree = 'Masters' AND program LIKE '%Computer Science%' AND program LIKE '%Johns Hopkins%'"
-    JHUCSnum = len(runquery(connection, JHUcompQuery))
-    print(f"1. applicant of spring 2025: {len(Fall25)}")
-    print(f"2. International percentage: {interper:.2f}%")
-    print(f"3. Average GPA: {gpa}, Average GRE {gre}, Average GREV {grev}, Average GRE AW {greaw}")
-    print(f"4. Average GPA American: {usgpaavg}")
-    print(f"5. Accepted Percent: {acceptedperc}")
-    print(f"6. Average GPA Acceptance: {acceptavg}")
-    print(f"7. JHU Masters Computer Science count: {JHUCSnum}")
+    accpt_gpa_query = ("SELECT gpa FROM applicants WHERE status "
+                       "LIKE 'Accepted%' AND term = 'Fall 2025' AND gpa IS NOT NULL")
+    acceptavg = statistics.mean(runquery(connection, accpt_gpa_query))
+
+    jhu_comp_query = ("SELECT program FROM applicants WHERE degree = 'Masters' "
+                      "AND program LIKE '%Computer Science%' AND program LIKE '%Johns Hopkins%'")
+    jhu_cs_num = len(runquery(connection, jhu_comp_query))
 
     return {
-        'fall_2025_applicants': len(Fall25),
-        'international_percentage': f"{interper:.2f}%",
-        'average_gpa': f"{gpa:.2f}",
-        'average_gre': f"{gre:.0f}",
+        'fall_2025_applicants': len(fall_25),
+        'international_percentage': f"{inter_percent:.2f}%",
+        'average_gpa': f"{statistics.mean(runquery(connection, gpa)):.2f}",
+        'average_gre': f"{statistics.mean(runquery(connection, gre)):.0f}",
         'average_gre_verbal': f"{grev:.0f}",
         'average_gre_aw': f"{greaw:.1f}",
         'us_average_gpa': f"{usgpaavg:.2f}",
         'acceptance_rate': f"{acceptedperc:.1f}%",
         'accepted_average_gpa': f"{acceptavg:.2f}",
-        'jhu_cs_masters': JHUCSnum,
+        'jhu_cs_masters': jhu_cs_num,
         'total_applicants': total_count
     }
 

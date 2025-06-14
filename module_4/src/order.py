@@ -1,4 +1,4 @@
-from .pizza import Pizza
+from src.pizza import Pizza
 class Order:
     """
     Represents a customer's order, containing multiple pizzas, total cost, and payment status.
