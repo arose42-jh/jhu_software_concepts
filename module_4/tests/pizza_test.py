@@ -1,5 +1,5 @@
 import pytest
-from pizzaorders.pizza import Pizza
+from src.pizza import Pizza
 
 @pytest.fixture
 def basicpizza():

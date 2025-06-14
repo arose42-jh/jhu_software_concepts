@@ -1,5 +1,5 @@
 import pytest
-from pizzaorders.order import Order
+from src.order import Order
 
 #Using fixtures to set up test cases for the tests to come
 @pytest.fixture

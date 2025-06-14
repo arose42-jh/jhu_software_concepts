@@ -1,6 +1,6 @@
 import pytest
-from pizzaorders.order import Order
-from pizzaorders.pizza import Pizza
+from src.order import Order
+from src.pizza import Pizza
 
 @pytest.fixture
 def empty_order():
