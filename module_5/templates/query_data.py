@@ -33,7 +33,7 @@ def runquery(db_connection, query, parameters = None):
     return result
 
 #All the desired queries go here
-def get_all_statistics():
+def get_all_statistics(table, column, limit,):
     """
     Run multiple queries to gather statistics about applicants.
 
@@ -131,6 +131,7 @@ def get_all_statistics():
         program_col=sql.Identifier("program"),
         table=sql.Identifier("applicants"),
         degree_col=sql.Identifier("degree"),
+        limit = sql.Literal(limit)
     )
     jhu_cs_num = len(runquery(connection, jhu_comp_query,
                                ("Masters", "%Computer Science%", "%Johns Hopkins%")))
