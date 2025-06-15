@@ -13,4 +13,4 @@ python:
   install:
     - requirements: requirements.txt
 sphinx:
-  configuration: source/conf.py
+  configuration: module_4/source/conf.py
