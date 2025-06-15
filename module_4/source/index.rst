@@ -10,13 +10,13 @@ Add your content using ``reStructuredText`` syntax. See the
 `reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
 documentation for details.
 
-.. automodule:: pizza
+.. automodule:: src.pizza
    :members:
    :undoc-members:
    :show-inheritance:
    :special-members: __init__
 
-.. automodule:: order
+.. automodule:: src.order
    :members:
    :undoc-members:
    :show-inheritance:
