@@ -42,104 +42,147 @@ def get_all_statistics():
     """
     total_count_query = sql.SQL("SELECT {id_col} FROM {table} LIMIT {limit}").format(
         id_col=sql.Identifier("id"),
-        table=sql.Identifier("applicants")
+        table=sql.Identifier("applicants"),
+        limit = sql.Literal(10000)
     )
     total_count = len(runquery(connection, total_count_query))
 
-    fall_25_query = sql.SQL("SELECT {id_col} FROM {table} WHERE {term_col} = %s LIMIT {limit}").format(
-        id_col=sql.Identifier("id"),
-        table=sql.Identifier("applicants"),
-        term_col=sql.Identifier("term")
-    )
-    fall_25 = runquery(connection, fall_25_query, ("Fall 2025",))
+    fall_25 = runquery(
+        connection,
+        sql.SQL("""
+            SELECT {id_col} 
+            FROM {table} 
+            WHERE {term_col} = %s 
+            LIMIT {limit}""").format(
+            id_col=sql.Identifier("id"),
+            table=sql.Identifier("applicants"),
+            term_col=sql.Identifier("term"),
+            limit = sql.Literal(10000)),("Fall 2025",))
 
-    international_query = sql.SQL("SELECT {id_col} FROM {table} WHERE {nationality_col} = %s LIMIT {limit}").format(
-        id_col=sql.Identifier("id"),
-        table=sql.Identifier("applicants"),
-        nationality_col=sql.Identifier("us_or_international")
-    )
-    inter_count = len(runquery(connection, international_query, ("International",)))
+    inter_count = len(runquery(
+        connection,
+        sql.SQL("SELECT {id_col} FROM {table} WHERE {nationality_col} = %s LIMIT {limit}").format(
+            id_col=sql.Identifier("id"),
+            table=sql.Identifier("applicants"),
+            nationality_col=sql.Identifier("us_or_international"),
+            limit = sql.Literal(10000)
+        ),
+        ("International",)
+    ))
     inter_percent = inter_count / total_count * 100
 
-    gpa_query = sql.SQL("SELECT {gpa_col} FROM {table} WHERE {gpa_col} IS NOT NULL LIMIT {limit}").format(
-        gpa_col=sql.Identifier("gpa"),
-        table=sql.Identifier("applicants")
+    gpa_values = runquery(
+        connection,
+        sql.SQL("SELECT {gpa_col} FROM {table} WHERE {gpa_col} IS NOT NULL LIMIT {limit}").format(
+            gpa_col=sql.Identifier("gpa"),
+            table=sql.Identifier("applicants"),
+            limit = sql.Literal(10000)
+        )
     )
-    gpa_values = runquery(connection, gpa_query)
-    gpa = statistics.mean(gpa_values)
-
-    gre_query = sql.SQL("SELECT {gre_col} FROM {table} WHERE {gre_col} IS NOT NULL LIMIT {limit}").format(
-        gre_col=sql.Identifier("gre"),
-        table=sql.Identifier("applicants")
+    gre_values = runquery(
+        connection,
+        sql.SQL("SELECT {gre_col} FROM {table} WHERE {gre_col} IS NOT NULL LIMIT {limit}").format(
+            gre_col=sql.Identifier("gre"),
+            table=sql.Identifier("applicants"),
+            limit = sql.Literal(10000)
+        )
     )
-    gre_values = runquery(connection, gre_query)
-    gre = statistics.mean(gre_values)
-
-    grev_query = sql.SQL("SELECT {gre_v_col} FROM {table} WHERE {gre_v_col} IS NOT NULL LIMIT {limit}").format(
-        gre_v_col=sql.Identifier("gre_v"),
-        table=sql.Identifier("applicants")
-    )
-    grev_values = runquery(connection, grev_query)
-    grev = statistics.mean(grev_values)
-
-    greaw_query = sql.SQL("SELECT {gre_aw_col} FROM {table} WHERE {gre_aw_col} IS NOT NULL LIMIT {limit}").format(
-        gre_aw_col=sql.Identifier("gre_aw"),
-        table=sql.Identifier("applicants")
-    )
-    greaw_values = runquery(connection, greaw_query)
-    greaw = statistics.mean(greaw_values)
-
-    us_gpa_query = sql.SQL("""
-        SELECT {gpa_col} FROM {table} 
-        WHERE {gpa_col} IS NOT NULL 
-        AND {nationality_col} = %s 
-        AND {term_col} = %s
-        LIMIT {limit}
-    """).format(
-        gpa_col=sql.Identifier("gpa"),
-        table=sql.Identifier("applicants"),
-        nationality_col=sql.Identifier("us_or_international"),
-        term_col=sql.Identifier("term")
-    )
-    us_gpa_values = runquery(connection, us_gpa_query, ("American", "Fall 2025"))
-    us_gpa_avg = statistics.mean(us_gpa_values)
-
-    accepted_query = sql.SQL("""
-        SELECT {status_col} FROM {table} 
-        WHERE {status_col} LIKE %s 
-        AND {term_col} = %s
-        LIMIT {limit}
-    """).format(
-        status_col=sql.Identifier("status"),
-        table=sql.Identifier("applicants"),
-        term_col=sql.Identifier("term")
-    )
-    accepted_count = len(runquery(connection, accepted_query, ("Accepted%", "Fall 2025")))
+    grev = statistics.mean(runquery(
+        connection,
+        sql.SQL("""
+                SELECT {gre_v_col} 
+                FROM {table} 
+                WHERE {gre_v_col} IS NOT NULL 
+                LIMIT {limit}""").format(
+            gre_v_col=sql.Identifier("gre_v"),
+            table=sql.Identifier("applicants"),
+            limit = sql.Literal(10000)
+        )
+    ))
+    greaw = statistics.mean(runquery(
+        connection,
+        sql.SQL("""
+                SELECT {gre_aw_col} 
+                FROM {table} 
+                WHERE {gre_aw_col} IS NOT NULL 
+                LIMIT {limit}""").format(
+            gre_aw_col=sql.Identifier("gre_aw"),
+            table=sql.Identifier("applicants"),
+            limit = sql.Literal(10000)
+        )
+    ))
+    us_gpa_avg = statistics.mean(runquery(
+        connection,
+        sql.SQL("""
+            SELECT {gpa_col} FROM {table} 
+            WHERE {gpa_col} IS NOT NULL 
+            AND {nationality_col} = %s 
+            AND {term_col} = %s
+            LIMIT {limit}
+        """).format(
+            gpa_col=sql.Identifier("gpa"),
+            table=sql.Identifier("applicants"),
+            nationality_col=sql.Identifier("us_or_international"),
+            term_col=sql.Identifier("term"),
+            limit = sql.Literal(10000)
+        ),
+        ("American", "Fall 2025")
+    ))
+    accepted_count = len(runquery(
+        connection,
+        sql.SQL("""
+            SELECT {status_col} FROM {table} 
+            WHERE {status_col} LIKE %s 
+            AND {term_col} = %s
+            LIMIT {limit}
+        """).format(
+            status_col=sql.Identifier("status"),
+            table=sql.Identifier("applicants"),
+            term_col=sql.Identifier("term"),
+            limit = sql.Literal(10000)
+        ),
+        ("Accepted%", "Fall 2025")
+    ))
     acceptedperc = accepted_count / len(fall_25) * 100
-
-    accpt_gpa_query = ("SELECT gpa FROM applicants WHERE status "
-                       "LIKE 'Accepted%' AND term = 'Fall 2025' AND gpa IS NOT NULL")
-    acceptavg = statistics.mean(runquery(connection, accpt_gpa_query))
-
-    jhu_comp_query = sql.SQL("""
-        SELECT {program_col} FROM {table} 
-        WHERE {degree_col} = %s 
-        AND {program_col} LIKE %s 
-        AND {program_col} LIKE %s
+    acceptavg = statistics.mean(runquery(
+        connection,
+        sql.SQL("""
+        SELECT {gpa_col} FROM {table} 
+        WHERE {status_col} LIKE %s 
+        AND {term_col} = %s 
+        AND {gpa_col} IS NOT NULL
         LIMIT {limit}
     """).format(
-        program_col=sql.Identifier("program"),
+        gpa_col=sql.Identifier("gpa"),
         table=sql.Identifier("applicants"),
-        degree_col=sql.Identifier("degree"),
-    )
-    jhu_cs_num = len(runquery(connection, jhu_comp_query,
-                               ("Masters", "%Computer Science%", "%Johns Hopkins%")))
+        status_col=sql.Identifier("status"),
+        term_col=sql.Identifier("term"),
+        limit = sql.Literal(10000)
+    ),
+    ("Accepted%", "Fall 2025")
+    ))
+    jhu_cs_num = len(runquery(
+        connection,
+        sql.SQL("""
+            SELECT {program_col} FROM {table} 
+            WHERE {degree_col} = %s 
+            AND {program_col} LIKE %s 
+            AND {program_col} LIKE %s
+            LIMIT {limit}
+        """).format(
+            program_col=sql.Identifier("program"),
+            table=sql.Identifier("applicants"),
+            degree_col=sql.Identifier("degree"),
+            limit = sql.Literal(10000)
+        ),
+        ("Masters", "%Computer Science%", "%Johns Hopkins%")
+    ))
 
     return {
         'fall_2025_applicants': len(fall_25),
         'international_percentage': f"{inter_percent:.2f}%",
-        'average_gpa': f"{statistics.mean(runquery(connection, gpa)):.2f}",
-        'average_gre': f"{statistics.mean(runquery(connection, gre)):.0f}",
+        'average_gpa': f"{statistics.mean(gpa_values):.2f}",
+        'average_gre': f"{statistics.mean(gre_values):.0f}",
         'average_gre_verbal': f"{grev:.0f}",
         'average_gre_aw': f"{greaw:.1f}",
         'us_average_gpa': f"{us_gpa_avg:.2f}",
