@@ -3,6 +3,8 @@
 ## Overview
 
 This module contains documentation and source code for the project. The documentation is built using Sphinx and can be found in the `build/html` directory. The source code is located in the `src` directory, and tests are located in `tests`.
+Documentation can be found at https://jhu-software-concepts-sphix-documentation.readthedocs.io/en/latest/
+(as a note i could not figure out how to have the .yaml reside in module_4 sorry.)
 
 ## Directory Structure
 
