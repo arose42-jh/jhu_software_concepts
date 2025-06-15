@@ -143,7 +143,19 @@ def get_all_statistics():
         ),
         ("Accepted%", "Fall 2025")
     ))
-    acceptedperc = accepted_count / len(fall_25) * 100
+    fall_25_count = len(runquery(
+        connection,
+        sql.SQL("""
+            SELECT {id_col} 
+            FROM {table} 
+            WHERE {term_col} = %s 
+            LIMIT {limit}""").format(
+            id_col=sql.Identifier("id"),
+            table=sql.Identifier("applicants"),
+            term_col=sql.Identifier("term"),
+            limit = sql.Literal(10000)),("Fall 2025",)))
+  
+    acceptedperc = accepted_count / fall_25_count * 100
     acceptavg = statistics.mean(runquery(
         connection,
         sql.SQL("""
