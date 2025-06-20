@@ -1,0 +1,36 @@
+<!-- base HTML provided by chatGPT, input the bio, and links to other pages manually-->
+<!-- HTML for Homepage -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<strong><nav class="navbar">
+    <ul>
+        <li><a href="{{ url_for('pages.home') }}" class="active">Home</a></li>
+        <li><a href="{{ url_for('pages.projects') }}">Projects</a></li>
+        <li><a href="{{ url_for('pages.contact') }}">Contact</a></li>
+    </ul>
+</nav></strong>
+<div class="container">
+    <div class="bio-text">
+        <h1>Andrew Rose</h1>
+        <h2>Senior Associate Scientist</h2>
+        <p>
+            I am A Senior Associate Scientist at Sail Biomedecines, I graduated from the University of Michigan in 2017 with a degree in Biomedical
+            engineering. I am currently working towards my master's degree in Data Science at Johns Hopkins University. I am hoping to use these degrees to
+            start shifting my career towards bioinformatics and data science. In my free time im a big nerd. I love playing video games, dungeons and dragons,
+            and magic the gathering. I took the picture to the right!
+        </p>
+    </div>
+    <div class="bio-image">
+        <img src="{{ url_for('static', filename='_dsc0018.jpg') }}" alt="Your Name">
+    </div>
+</div>
+
+</body>
+</html>

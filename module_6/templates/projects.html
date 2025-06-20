@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Projects</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <strong><nav class="navbar">
+    <ul>
+        <li><a href="{{ url_for('pages.home') }}">Home</a></li>
+        <li><a href="{{ url_for('pages.projects') }}" class="active">Projects</a></li>
+        <li><a href="{{ url_for('pages.contact') }}">Contact</a></li>
+    </ul>
+  </nav></strong>
+  <h1>My Projects</h1>
+
+  <div class="project">
+    <h2>Module 1 - Personal Website</h2>
+    <p>In this module I created a website using Flask, including the use of blueprints, HTML and CSS.</p>
+    <a href="https://github.com/arose42-jh/jhu_software_concepts/tree/main/class_app" target="_blank">View on GitHub</a>
+  </div>
+<!-- for adding future projects, uncomment the following divs and fill in the details
+  <div class="project">
+    <h2>Project Title 2</h2>
+    <p>This is a tool that helps users do ABC more efficiently by leveraging modern frameworks like React and Node.js.</p>
+    <a href="https://github.com/yourusername/project2" target="_blank">View on GitHub</a>
+  </div>
+
+  <div class="project">
+    <h2>Project Title 3</h2>
+    <p>An experimental project that integrates machine learning models to automate XYZ process.</p>
+    <a href="https://github.com/yourusername/project3" target="_blank">View on GitHub</a>
+  </div>
+-->
+</body>
+</html>
