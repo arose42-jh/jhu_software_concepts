@@ -1,33 +1,20 @@
-### 1. Prerequisites
-- Python 3.10+
+# Module 6 Flask Web Application - Docker Deployment Guide
 
-### 2. Clone the Repository
-If you haven't already, clone this repository to your local machine:
+This guide explains how to run the Module 6 Flask web application as a Docker container.
 
-```powershell
-git clone <repository-url>
-cd jhu_software_concepts-1
-```
+## Prerequisites
+- [Docker](https://www.docker.com/products/docker-desktop) installed on your system.
+- https://hub.docker.com/repository/docker/arose42/module_6/general the image for this website
 
-### 3. Set Up a Virtual Environment
-
-#### Using venv:
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate
-```
-
-### 4. Install Dependencies
-Navigate to the `module_1` directory and install the required packages:
+## Run the Docker Container
+After building the image, start the container with:
 
 ```powershell
-cd module_1
-pip install -r requirements.txt
+docker run -p 8080:8080 arose42/module_6:v1
 ```
+- The app will be accessible at [http://localhost:8080](http://localhost:8080)
 
-### 5. Run the Flask App
-Start the Flask application with:
+## Notes
+- Any changes to the code require rebuilding the Docker image.
+- The container exposes port 8080 as defined in `run.py` and the Dockerfile.
 
-```powershell
-python run.py
-```
